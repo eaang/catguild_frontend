@@ -1,0 +1,19 @@
+<template>
+  <div>
+    All Cats Are Beautiful is a semi-hardcore WoW TBC video game club made by
+    and for leftists who want to 1) play/raid seriously 2) in an environment
+    free of sexism, racism, homophobia, and any other type of bigotry. We are of
+    course LGBTQ+ friendly!
+    <br />
+    Casual/social/pvp-focused members are also welcome, but are advised that our
+    main focus is progression and raiding. Our overarching aim is to clear
+    content in a timely and efficient manner and eventually kill KJ.
+    <br />
+    We are on the server Deviate Delight (H) on US-East (RP-PVP), and raid twice
+    a week (days/times TBD).
+  </div>
+</template>
+
+<script>
+export default {}
+</script>

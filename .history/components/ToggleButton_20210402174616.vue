@@ -1,0 +1,24 @@
+<template>
+  <div @click="currentStatus = !currentStatus">
+    <div class="bg-gray-800 w-8 h-4 rounded-full flex justify-items-auto">
+      <div
+        v-if="currentStatus"
+        class="bg-gray-200 w-3 h-3 rounded-full justify-self-start"
+      ></div>
+      <div
+        v-if="!currentStatus"
+        class="bg-gray-200 w-3 h-3 rounded-full justify-self-end"
+      ></div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      currentStatus: false,
+    }
+  },
+}
+</script>
