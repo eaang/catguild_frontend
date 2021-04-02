@@ -46,7 +46,9 @@ export default {
   ],
 
   // Strapi configuration: https://strapi.nuxtjs.org/options
-  strapi: {},
+  strapi: {
+    // url: 'https://catguild.herokuapp.com/',
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
