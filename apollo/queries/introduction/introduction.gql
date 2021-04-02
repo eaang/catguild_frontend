@@ -1,0 +1,6 @@
+query Introduction {
+  introduction {
+    title
+    content
+  }
+}

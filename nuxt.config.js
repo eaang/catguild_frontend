@@ -39,15 +39,18 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    // https://strapi.nuxtjs.org/
-    '@nuxtjs/strapi',
     // https://www.npmjs.com/package/@nuxtjs/markdownit
     '@nuxtjs/markdownit',
+    '@nuxtjs/apollo',
   ],
 
-  // Strapi configuration: https://strapi.nuxtjs.org/options
-  strapi: {
-    // url: 'https://catguild.herokuapp.com/',
+  // Apollo configuration
+  apollo: {
+    clientConfigs: {
+      default: {
+        httpEndpoint: 'http://localhost:1337/graphql',
+      },
+    },
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
