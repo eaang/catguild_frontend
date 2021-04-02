@@ -41,6 +41,8 @@ export default {
     '@nuxtjs/axios',
     // https://strapi.nuxtjs.org/
     '@nuxtjs/strapi',
+    // https://www.npmjs.com/package/@nuxtjs/markdownit
+    '@nuxtjs/markdownit',
   ],
 
   // Strapi configuration: https://strapi.nuxtjs.org/options
@@ -48,6 +50,14 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
+
+  // https://www.npmjs.com/package/@nuxtjs/markdownit
+  markdownit: {
+    preset: 'default',
+    linkify: true,
+    breaks: true,
+    injected: true,
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
