@@ -13,13 +13,9 @@
 
 <script>
 export default {
-  data() {
-    return {
-      intro: {},
-    }
-  },
-  async fetch() {
-    this.intro = await this.$strapi.find('introduction')
+  async asyncData(context) {
+    const intro = await context.$strapi.find('introduction')
+    return { intro }
   },
 }
 </script>
