@@ -49,6 +49,7 @@ export default {
     clientConfigs: {
       default: {
         httpEndpoint: 'https://catguild.herokuapp.com/graphql',
+        // httpEndpoint: 'http://localhost:1337/graphql',
       },
     },
   },
