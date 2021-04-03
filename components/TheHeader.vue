@@ -1,5 +1,7 @@
 <template>
-  <div class="w-full h-16 flex items-center shadow">
+  <div
+    class="w-full h-16 flex items-center border-b border-gray-300 dark:border-gray-700"
+  >
     <div class="w-full p-6 flex justify-between items-center">
       <div class="left-side">
         <nuxt-link to="/"

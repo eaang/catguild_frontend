@@ -48,8 +48,8 @@ export default {
   apollo: {
     clientConfigs: {
       default: {
-        // httpEndpoint: 'https://catguild.herokuapp.com/graphql',
-        httpEndpoint: 'http://localhost:1337/graphql',
+        httpEndpoint: 'https://catguild.herokuapp.com/graphql',
+        // httpEndpoint: 'http://localhost:1337/graphql',
       },
     },
   },
@@ -59,10 +59,7 @@ export default {
 
   // https://www.npmjs.com/package/@nuxtjs/markdownit
   markdownit: {
-    preset: 'default',
-    linkify: true,
-    breaks: true,
-    injected: true,
+    runtime: true, // Support `$md()`
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
