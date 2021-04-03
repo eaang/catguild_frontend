@@ -1,5 +1,5 @@
-mutation IntroductionMutation($title: String!) {
-  updateIntroduction(input: { data: { title: $title } }) {
+mutation IntroductionMutation($title: String!, $content: String!) {
+  updateIntroduction(input: { data: { title: $title, content: $content } }) {
     introduction {
       title
       content
