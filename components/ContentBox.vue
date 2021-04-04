@@ -1,6 +1,6 @@
 <template>
   <!-- eslint-disable-next-line vue/no-v-html -->
-  <div class="markdown space-y-4" v-html="$md.render(content)"></div>
+  <div class="markdown" v-html="content"></div>
 </template>
 
 <script>

@@ -1,7 +1,7 @@
 <template>
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    class="icon icon-tabler icon-tabler-device-floppy"
+    class="icon icon-tabler icon-tabler-code"
     width="24"
     height="24"
     viewBox="0 0 24 24"
@@ -12,10 +12,8 @@
     stroke-linejoin="round"
   >
     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-    <path
-      d="M6 4h10l4 4v10a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2"
-    ></path>
-    <circle cx="12" cy="14" r="2"></circle>
-    <polyline points="14 4 14 8 8 8 8 4"></polyline>
+    <polyline points="7 8 3 12 7 16"></polyline>
+    <polyline points="17 8 21 12 17 16"></polyline>
+    <line x1="14" y1="4" x2="10" y2="20"></line>
   </svg>
 </template>

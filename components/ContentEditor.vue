@@ -7,7 +7,7 @@
           :class="{ 'is-active': isActive.bold() }"
           @click="commands.bold"
         >
-          Bold
+          <EditorBold />
         </button>
 
         <button
@@ -15,7 +15,7 @@
           :class="{ 'is-active': isActive.italic() }"
           @click="commands.italic"
         >
-          Ital
+          <EditorItal />
         </button>
 
         <button
@@ -23,7 +23,7 @@
           :class="{ 'is-active': isActive.strike() }"
           @click="commands.strike"
         >
-          Strike
+          <EditorStrike />
         </button>
 
         <button
@@ -31,7 +31,7 @@
           :class="{ 'is-active': isActive.underline() }"
           @click="commands.underline"
         >
-          Underline
+          <EditorUnderline />
         </button>
 
         <button
@@ -39,7 +39,7 @@
           :class="{ 'is-active': isActive.code() }"
           @click="commands.code"
         >
-          Code
+          <EditorCode />
         </button>
 
         <button
@@ -47,7 +47,7 @@
           :class="{ 'is-active': isActive.paragraph() }"
           @click="commands.paragraph"
         >
-          Paragraph
+          <EditorParagraph />
         </button>
 
         <button
@@ -55,7 +55,7 @@
           :class="{ 'is-active': isActive.heading({ level: 1 }) }"
           @click="commands.heading({ level: 1 })"
         >
-          H1
+          <EditorH1 />
         </button>
 
         <button
@@ -63,7 +63,7 @@
           :class="{ 'is-active': isActive.heading({ level: 2 }) }"
           @click="commands.heading({ level: 2 })"
         >
-          H2
+          <EditorH2 />
         </button>
 
         <button
@@ -71,7 +71,7 @@
           :class="{ 'is-active': isActive.heading({ level: 3 }) }"
           @click="commands.heading({ level: 3 })"
         >
-          H3
+          <EditorH3 />
         </button>
 
         <button
@@ -79,7 +79,7 @@
           :class="{ 'is-active': isActive.bullet_list() }"
           @click="commands.bullet_list"
         >
-          Bullet
+          <EditorBullet />
         </button>
 
         <button
@@ -87,7 +87,7 @@
           :class="{ 'is-active': isActive.ordered_list() }"
           @click="commands.ordered_list"
         >
-          Numbered
+          <EditorNum />
         </button>
 
         <button
@@ -95,7 +95,7 @@
           :class="{ 'is-active': isActive.blockquote() }"
           @click="commands.blockquote"
         >
-          Quote
+          <EditorQuote />
         </button>
 
         <button
@@ -103,21 +103,27 @@
           :class="{ 'is-active': isActive.code_block() }"
           @click="commands.code_block"
         >
-          Codeblock
+          <EditorCodeblock />
         </button>
 
         <button class="menubar__button" @click="commands.horizontal_rule">
-          Rule
+          <EditorLine />
         </button>
 
-        <button class="menubar__button" @click="commands.undo">Undo</button>
+        <button class="menubar__button" @click="commands.undo">
+          <EditorUndo />
+        </button>
 
-        <button class="menubar__button" @click="commands.redo">Redo</button>
+        <button class="menubar__button" @click="commands.redo">
+          <EditorRedo />
+        </button>
+
+        <button class="menubar__button" @click="updateContent"><Save /></button>
       </div>
     </editor-menu-bar>
 
     <editor-content
-      class="markdown bg-white p-2 editor__content"
+      class="markdown bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200 editor__content"
       :editor="editor"
     />
   </div>
@@ -149,6 +155,13 @@ export default {
     EditorContent,
     EditorMenuBar,
   },
+  props: {
+    content: {
+      type: String,
+      default:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    },
+  },
   data() {
     return {
       editor: new Editor({
@@ -171,33 +184,18 @@ export default {
           new Underline(),
           new History(),
         ],
-        content: `
-          <h2>
-            Hi there,
-          </h2>
-          <p>
-            this is a very <em>basic</em> example of tiptap.
-          </p>
-          <pre><code>body { display: none; }</code></pre>
-          <ul>
-            <li>
-              A regular list
-            </li>
-            <li>
-              With regular items
-            </li>
-          </ul>
-          <blockquote>
-            It's amazing 👏
-            <br />
-            – mom
-          </blockquote>
-        `,
+        content: this.content,
       }),
     }
   },
   beforeDestroy() {
     this.editor.destroy()
+  },
+  methods: {
+    updateContent() {
+      const content = this.editor.getHTML()
+      this.$nuxt.$emit('update-content', content)
+    },
   },
 }
 </script>

@@ -40,6 +40,9 @@ export default {
 .markdown h3 {
   @apply text-lg font-bold;
 }
+.markdown p {
+  @apply py-1;
+}
 .markdown ul {
   @apply list-disc;
 }
@@ -50,12 +53,12 @@ export default {
   @apply ml-6;
 }
 .markdown blockquote {
-  @apply pl-2 my-2 border-l-4 border-gray-300 italic;
+  @apply pl-2 my-2 border-l-4 border-gray-400 italic;
 }
 .markdown pre {
-  @apply p-2 my-2 bg-black text-white rounded-lg;
+  @apply p-2 my-2 bg-gray-900 text-gray-400 rounded-lg;
 }
 .markdown hr {
-  @apply my-2;
+  @apply my-2 border-gray-300;
 }
 </style>

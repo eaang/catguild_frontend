@@ -7,18 +7,15 @@
       </div>
       <!-- Editing Text -->
       <div v-else>
-        <textarea v-model="content" class="w-full h-64"></textarea>
-        <ContentEditor />
+        <!-- <textarea v-model="content" class="w-full h-64"></textarea> -->
+        <ContentEditor :content="content" />
       </div>
     </div>
     <!-- Toggle Options -->
     <div class="px-2">
       <div class="h-6 w-6">
         <div v-if="!editing" @click="editing = !editing">
-          <PencilAlt />
-        </div>
-        <div v-else @click="updateTitle">
-          <Save />
+          <Edit />
         </div>
       </div>
     </div>
@@ -28,6 +25,7 @@
 <script>
 import introQuery from '~/apollo/queries/introduction/introduction'
 import introMutate from '~/apollo/mutations/introduction/introductionmutation'
+
 export default {
   data() {
     return {
@@ -35,15 +33,20 @@ export default {
       editing: false,
     }
   },
-
+  created() {
+    this.$nuxt.$on('update-content', (e) => {
+      this.updateContent(e)
+    })
+  },
   methods: {
-    updateTitle() {
+    updateContent(content) {
       this.$apollo.mutate({
         mutation: introMutate,
         variables: {
-          content: this.content,
+          content,
         },
       })
+      this.content = content
       this.editing = !this.editing
     },
   },
