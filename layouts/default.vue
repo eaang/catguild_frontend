@@ -29,3 +29,33 @@ export default {
   },
 }
 </script>
+
+<style>
+.markdown h1 {
+  @apply text-2xl font-bold;
+}
+.markdown h2 {
+  @apply text-xl font-bold;
+}
+.markdown h3 {
+  @apply text-lg font-bold;
+}
+.markdown ul {
+  @apply list-disc;
+}
+.markdown ol {
+  @apply list-decimal;
+}
+.markdown li {
+  @apply ml-6;
+}
+.markdown blockquote {
+  @apply pl-2 my-2 border-l-4 border-gray-300 italic;
+}
+.markdown pre {
+  @apply p-2 my-2 bg-black text-white rounded-lg;
+}
+.markdown hr {
+  @apply my-2;
+}
+</style>

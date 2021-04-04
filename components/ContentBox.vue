@@ -14,9 +14,3 @@ export default {
   },
 }
 </script>
-
-<style>
-.markdown h1 {
-  @apply text-2xl font-bold;
-}
-</style>
