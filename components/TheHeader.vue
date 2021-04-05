@@ -1,6 +1,6 @@
 <template>
   <div class="w-full h-16 flex items-center">
-    <div class="w-full p-6 flex justify-between items-center">
+    <div class="container flex justify-between items-center">
       <div class="left-side">
         <nuxt-link to="/"
           ><div class="text-2xl font-bold text-gray-800 dark:text-gray-200">

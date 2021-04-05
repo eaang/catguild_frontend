@@ -1,7 +1,7 @@
 <template>
   <div class="editor">
     <editor-menu-bar v-slot="{ commands, isActive }" :editor="editor">
-      <div class="menubar">
+      <div class="menubar flex items-center py-2 space-x-2">
         <button
           class="menubar__button"
           :class="{ 'is-active': isActive.bold() }"
@@ -123,7 +123,7 @@
     </editor-menu-bar>
 
     <editor-content
-      class="markdown bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200 editor__content"
+      class="markdown p-2 bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200 editor__content"
       :editor="editor"
     />
   </div>

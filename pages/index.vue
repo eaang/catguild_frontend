@@ -12,9 +12,9 @@
       </div>
     </div>
     <!-- Toggle Options -->
-    <div class="px-2">
-      <div class="h-6 w-6">
-        <div v-if="!editing" @click="editing = !editing">
+    <div v-if="!editing" @click="editing = !editing">
+      <div class="px-2">
+        <div class="h-8 w-6 flex items-center cursor-pointer">
           <Edit />
         </div>
       </div>
