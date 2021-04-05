@@ -1,13 +1,6 @@
 <template>
-  <div
-    class="flex justify-between items-center cursor-pointer"
-    @click="toggle = !toggle"
-  >
+  <div>
     <div class="py-2 font-semibold text-sm uppercase">{{ title }}</div>
-    <div class="px-2">
-      <div v-if="toggle" class="h-4 w-4"><ChevronDown /></div>
-      <div v-if="!toggle" class="h-4 w-4"><ChevronUp /></div>
-    </div>
   </div>
 </template>
 
@@ -16,13 +9,14 @@ export default {
   props: {
     title: {
       type: String,
-      default: 'Category',
+      default: 'Title',
     },
-  },
-  data() {
-    return {
-      toggle: false,
-    }
   },
 }
 </script>
+
+<style scoped>
+.disabled {
+  @apply text-gray-400 dark:text-gray-600;
+}
+</style>
