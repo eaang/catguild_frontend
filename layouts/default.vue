@@ -61,4 +61,12 @@ export default {
 .markdown hr {
   @apply my-2 border-gray-300;
 }
+*,
+input,
+select,
+textarea,
+option,
+button {
+  outline: none !important;
+}
 </style>
