@@ -1,5 +1,7 @@
-mutation BlockMutation($id: ID!, $content: String!) {
-  updateBlock(input: { where: { id: $id }, data: { content: $content } }) {
+mutation BlockMutation($id: ID!, $content: String!, $title: String!) {
+  updateBlock(
+    input: { where: { id: $id }, data: { content: $content, title: $title } }
+  ) {
     block {
       title
       content

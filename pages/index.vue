@@ -1,5 +1,5 @@
 <template>
-  <div v-if="categories" class="px-6">
+  <div v-if="categories" class="px-6 w-full">
     <div
       v-for="block in category.blocks"
       :key="block.id"
@@ -7,11 +7,11 @@
     >
       <!-- Normal Block Text -->
       <div v-if="editing === false" class="w-full">
-        <ContentBox :content="block.content" class="" />
+        <ContentBox :content="block.content" class="w-full" />
       </div>
       <!-- Editing Block Text -->
       <div v-else class="w-full">
-        <ContentEditor :content="block.content" class="" />
+        <ContentEditor :content="block.content" class="w-full" />
       </div>
       <!-- Toggle Options -->
       <div v-if="editing === false" @click="editing = true">
@@ -42,19 +42,20 @@ export default {
   },
   created() {
     this.$nuxt.$on('update-content', (e) => {
-      this.updateContent(this.category.blocks[0].id, e)
+      this.updateContent(this.category.blocks[0].id, e, 'Introduction')
     })
   },
   beforeDestroy() {
     this.$nuxt.$off('update-content')
   },
   methods: {
-    updateContent(id, content) {
+    updateContent(id, content, title) {
       this.$apollo.mutate({
         mutation: blockMutation,
         variables: {
           id,
           content,
+          title,
         },
       })
       location.reload()

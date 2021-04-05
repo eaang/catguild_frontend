@@ -1,5 +1,5 @@
 <template>
-  <div v-if="categories" class="px-6">
+  <div v-if="categories" class="px-6 w-full">
     <div class="text-2xl font-bold uppercase">
       {{ category.name }}
     </div>
@@ -11,16 +11,28 @@
       <!-- Normal Block Text -->
       <div v-if="editingBlock !== block.id" class="w-full">
         <span :id="anchorTag(block.title)"></span>
-        <ContentBox :content="block.content" class="my-4" />
+        <ContentBox :content="block.content" class="my-4 w-full" />
       </div>
       <!-- Editing Block Text -->
-      <div v-else class="w-full">
-        <ContentEditor :content="content" class="my-4" />
+      <div v-else class="w-full space-y-2">
+        <ContentEditor :content="content" class="mt-4 w-full" />
+        <div class="flex items-center leading-8 space-x-2">
+          <div class="text-sm uppercase font-bold flex-shrink-0">
+            Sidebar Title
+          </div>
+          <div class="w-full">
+            <input
+              v-model="title"
+              type="text"
+              class="w-full px-2 bg-gray-100 text-gray-800 dark:bg-gray-700 dark:text-gray-200"
+            />
+          </div>
+        </div>
       </div>
       <!-- Toggle Options -->
       <div
         v-if="editingBlock !== block.id"
-        @click="selectBlock(block.id, block.content)"
+        @click="selectBlock(block.id, block.content, block.title)"
       >
         <div class="px-2 mt-4">
           <div class="h-8 w-6 flex items-center cursor-pointer">
@@ -41,6 +53,7 @@ export default {
     return {
       editingBlock: null,
       content: '',
+      title: '',
     }
   },
   computed: {
@@ -50,7 +63,7 @@ export default {
   },
   created() {
     this.$nuxt.$on('update-content', (e) => {
-      this.updateContent(this.editingBlock, e)
+      this.updateContent(this.editingBlock, e, this.title)
     })
   },
   beforeDestroy() {
@@ -69,16 +82,18 @@ export default {
     anchorTag(str) {
       return str.match(/\w/g).join('').toLowerCase()
     },
-    selectBlock(id, content) {
+    selectBlock(id, content, title) {
       this.editingBlock = id
       this.content = content
+      this.title = title
     },
-    updateContent(id, content) {
+    updateContent(id, content, title) {
       this.$apollo.mutate({
         mutation: blockMutation,
         variables: {
           id,
           content,
+          title,
         },
       })
       location.reload()
