@@ -53,6 +53,9 @@ export default {
       this.updateContent(this.editingBlock, e)
     })
   },
+  beforeDestroy() {
+    this.$nuxt.$off('update-content')
+  },
   apollo: {
     categories: {
       prefetch: true,
@@ -71,16 +74,14 @@ export default {
       this.content = content
     },
     updateContent(id, content) {
-      if (id !== null) {
-        this.$apollo.mutate({
-          mutation: blockMutation,
-          variables: {
-            id,
-            content,
-          },
-        })
-        location.reload()
-      }
+      this.$apollo.mutate({
+        mutation: blockMutation,
+        variables: {
+          id,
+          content,
+        },
+      })
+      location.reload()
     },
   },
 }

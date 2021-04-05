@@ -1,21 +1,24 @@
 <template>
-  <div v-if="content" class="px-6 w-full flex">
-    <div class="w-full">
-      <!-- Normal Text -->
-      <div v-if="!editing" class="w-full">
-        <ContentBox :content="content" />
+  <div v-if="categories" class="px-6">
+    <div
+      v-for="block in category.blocks"
+      :key="block.id"
+      class="box-section w-full flex"
+    >
+      <!-- Normal Block Text -->
+      <div v-if="editing === false" class="w-full">
+        <ContentBox :content="block.content" class="" />
       </div>
-      <!-- Editing Text -->
+      <!-- Editing Block Text -->
       <div v-else class="w-full">
-        <!-- <textarea v-model="content" class="w-full h-64"></textarea> -->
-        <ContentEditor :content="content" />
+        <ContentEditor :content="block.content" class="" />
       </div>
-    </div>
-    <!-- Toggle Options -->
-    <div v-if="!editing" @click="editing = !editing">
-      <div class="px-2">
-        <div class="h-8 w-6 flex items-center cursor-pointer">
-          <Edit />
+      <!-- Toggle Options -->
+      <div v-if="editing === false" @click="editing = true">
+        <div class="px-2">
+          <div class="h-8 w-6 flex items-center cursor-pointer">
+            <Edit />
+          </div>
         </div>
       </div>
     </div>
@@ -23,46 +26,46 @@
 </template>
 
 <script>
-import introQuery from '~/apollo/queries/introduction/introduction'
-import introMutate from '~/apollo/mutations/introduction/introductionmutation'
+import categoryQuery from '~/apollo/queries/categories/category'
+import blockMutation from '~/apollo/mutations/blocks/blockmutation'
 
 export default {
   data() {
     return {
-      content: '',
       editing: false,
     }
   },
+  computed: {
+    category() {
+      return this.categories[0]
+    },
+  },
   created() {
     this.$nuxt.$on('update-content', (e) => {
-      this.updateContent(null, e)
+      this.updateContent(this.category.blocks[0].id, e)
     })
+  },
+  beforeDestroy() {
+    this.$nuxt.$off('update-content')
   },
   methods: {
     updateContent(id, content) {
-      if (id === null) {
-        this.$apollo.mutate({
-          mutation: introMutate,
-          variables: {
-            content,
-          },
-        })
-        this.content = content
-        this.editing = !this.editing
-        location.reload()
-      }
+      this.$apollo.mutate({
+        mutation: blockMutation,
+        variables: {
+          id,
+          content,
+        },
+      })
+      location.reload()
     },
   },
-
   apollo: {
-    introduction: {
+    categories: {
       prefetch: true,
-      query: introQuery,
-      manual: true,
-      result({ data, loading }) {
-        if (!loading) {
-          this.content = data.introduction.content
-        }
+      query: categoryQuery,
+      variables() {
+        return { url: 'home' }
       },
     },
   },
