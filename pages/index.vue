@@ -2,11 +2,11 @@
   <div v-if="content" class="px-6 w-full flex">
     <div class="w-full">
       <!-- Normal Text -->
-      <div v-if="!editing">
+      <div v-if="!editing" class="w-full">
         <ContentBox :content="content" />
       </div>
       <!-- Editing Text -->
-      <div v-else>
+      <div v-else class="w-full">
         <!-- <textarea v-model="content" class="w-full h-64"></textarea> -->
         <ContentEditor :content="content" />
       </div>
@@ -35,19 +35,22 @@ export default {
   },
   created() {
     this.$nuxt.$on('update-content', (e) => {
-      this.updateContent(e)
+      this.updateContent(null, e)
     })
   },
   methods: {
-    updateContent(content) {
-      this.$apollo.mutate({
-        mutation: introMutate,
-        variables: {
-          content,
-        },
-      })
-      this.content = content
-      this.editing = !this.editing
+    updateContent(id, content) {
+      if (id === null) {
+        this.$apollo.mutate({
+          mutation: introMutate,
+          variables: {
+            content,
+          },
+        })
+        this.content = content
+        this.editing = !this.editing
+        location.reload()
+      }
     },
   },
 

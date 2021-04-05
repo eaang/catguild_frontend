@@ -9,12 +9,14 @@
       class="box-section w-full flex"
     >
       <!-- Normal Block Text -->
-      <div v-if="editingBlock !== block.id">
+      <div v-if="editingBlock !== block.id" class="w-full">
         <span :id="anchorTag(block.title)"></span>
         <ContentBox :content="block.content" class="my-4" />
       </div>
       <!-- Editing Block Text -->
-      <div v-else><ContentEditor :content="content" class="my-4" /></div>
+      <div v-else class="w-full">
+        <ContentEditor :content="content" class="my-4" />
+      </div>
       <!-- Toggle Options -->
       <div
         v-if="editingBlock !== block.id"
@@ -32,6 +34,8 @@
 
 <script>
 import categoryQuery from '~/apollo/queries/categories/category'
+import blockMutation from '~/apollo/mutations/blocks/blockmutation'
+
 export default {
   data() {
     return {
@@ -46,7 +50,7 @@ export default {
   },
   created() {
     this.$nuxt.$on('update-content', (e) => {
-      this.updateContent(e)
+      this.updateContent(this.editingBlock, e)
     })
   },
   apollo: {
@@ -66,9 +70,17 @@ export default {
       this.editingBlock = id
       this.content = content
     },
-    updateContent(content) {
-      console.log(content)
-      this.editingBlock = null
+    updateContent(id, content) {
+      if (id !== null) {
+        this.$apollo.mutate({
+          mutation: blockMutation,
+          variables: {
+            id,
+            content,
+          },
+        })
+        location.reload()
+      }
     },
   },
 }

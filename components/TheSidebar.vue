@@ -1,5 +1,10 @@
 <template>
   <div class="">
+    <nuxt-link to="/">
+      <div>
+        <div class="py-2 font-semibold text-sm uppercase">HOME</div>
+      </div>
+    </nuxt-link>
     <div v-for="category in categories" :key="category.id">
       <div
         class="flex justify-between items-center cursor-pointer"
