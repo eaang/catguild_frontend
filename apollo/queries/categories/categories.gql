@@ -2,6 +2,8 @@
 query Categories {
   categories {
     name
+    url
+    id
     blocks {
       title
     }
