@@ -6,7 +6,7 @@
         :class="{ 'pointer-events-none': category.blocks.length === 0 }"
       >
         <nuxt-link
-          :to="`/` + category.url"
+          :to="{ path: '/' + category.url, params: { id: category.id } }"
           class="flex-grow"
           :disabled="category.blocks.length === 0"
         >
@@ -30,9 +30,18 @@
       </div>
       <div v-if="activeItem === category.url" class="mb-2">
         <div v-for="block in category.blocks" :key="block.title">
-          <div class="py-2 pl-4 font-semibold text-sm cursor-pointer">
-            {{ block.title }}
-          </div>
+          <nuxt-link
+            :to="{
+              path: '/' + category.url + '#' + anchorTag(block.title),
+              params: { id: category.id },
+            }"
+            class="flex-grow"
+            :disabled="category.blocks.length === 0"
+          >
+            <div class="py-2 pl-4 font-semibold text-sm cursor-pointer">
+              {{ block.title }}
+            </div></nuxt-link
+          >
         </div>
       </div>
     </div>
@@ -59,6 +68,9 @@ export default {
       if (this.activeItem === i) {
         this.activeItem = null
       } else this.activeItem = i
+    },
+    anchorTag(str) {
+      return str.match(/\w/g).join('').toLowerCase()
     },
   },
 }

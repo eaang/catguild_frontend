@@ -1,5 +1,5 @@
 <template>
-  <div class="px-6 w-full flex">
+  <div v-if="content" class="px-6 w-full flex">
     <div class="w-full">
       <!-- Normal Text -->
       <div v-if="!editing">

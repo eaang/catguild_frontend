@@ -1,0 +1,10 @@
+query Categories($url: String!) {
+  categories(where: { url: $url }) {
+    name
+    blocks {
+      id
+      title
+      content
+    }
+  }
+}
