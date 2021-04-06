@@ -6,13 +6,13 @@
     <transition name="left">
       <div
         v-if="currentStatus"
-        class="bg-gray-200 w-4 h-4 rounded-full shadow justify-self-start shadow-"
+        class="bg-gray-200 w-4 h-4 rounded-full shadow-lg justify-self-start"
       ></div>
     </transition>
     <transition name="right">
       <div
         v-if="!currentStatus"
-        class="bg-gray-800 w-4 h-4 rounded-full shadow justify-self-end"
+        class="bg-gray-800 w-4 h-4 rounded-full shadow-lg justify-self-end"
       ></div>
     </transition>
   </div>

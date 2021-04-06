@@ -5,6 +5,10 @@ query Categories($url: String!) {
       id
       title
       content
+      image {
+        url
+      }
+      caption
     }
   }
 }

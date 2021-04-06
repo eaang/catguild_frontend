@@ -6,8 +6,13 @@
       class="box-section w-full flex"
     >
       <!-- Normal Block Text -->
-      <div v-if="editing === false" class="w-full">
+      <div v-if="editing === false" class="w-full flex">
         <ContentBox :content="block.content" class="w-full" />
+        <div v-if="block.image !== null" class="w-1/4 px-4 pt-10">
+          <div class="w-full">
+            <ImageBox :url="block.image.url" :caption="block.caption" />
+          </div>
+        </div>
       </div>
       <!-- Editing Block Text -->
       <div v-else class="w-full">

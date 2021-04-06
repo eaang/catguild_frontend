@@ -9,9 +9,12 @@
       class="box-section w-full flex"
     >
       <!-- Normal Block Text -->
-      <div v-if="editingBlock !== block.id" class="w-full">
+      <div v-if="editingBlock !== block.id" class="w-full flex">
         <span :id="anchorTag(block.title)"></span>
         <ContentBox :content="block.content" class="my-4 w-full" />
+        <div v-if="block.image !== null" class="w-1/4 px-4 pt-14">
+          <ImageBox :url="block.image.url" :caption="block.caption" />
+        </div>
       </div>
       <!-- Editing Block Text -->
       <div v-else class="w-full space-y-2">

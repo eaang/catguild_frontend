@@ -62,7 +62,7 @@ export default {
   @apply p-2 my-2 bg-gray-900 text-gray-400 rounded-lg;
 }
 .markdown hr {
-  @apply my-2 border-gray-300;
+  @apply my-2 border-gray-400;
 }
 *,
 input,
